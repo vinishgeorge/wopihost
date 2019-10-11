@@ -22,9 +22,9 @@ import java.security.NoSuchAlgorithmException;
  */
 @RestController
 @RequestMapping(value="/wopi")
-public class WopiHostContrller {
+public class WopiHostController {
 
-    Logger logger = LoggerFactory.getLogger(WopiHostContrller.class);
+    Logger logger = LoggerFactory.getLogger(WopiHostController.class);
 
     @Value("${file.path}")
     private String filePath;
@@ -32,7 +32,8 @@ public class WopiHostContrller {
     private static final String CHARSET_UTF8 = "UTF-8";
 
     /**
-     * 获取文件流
+     * 
+Get file stream
      * @param name
      * @param response
      */
@@ -65,7 +66,8 @@ public class WopiHostContrller {
     }
 
     /**
-     * 保存更新文件
+     * 
+		Saved update text
      * @param name
      * @param content
      */
@@ -85,7 +87,9 @@ public class WopiHostContrller {
     }
 
     /**
-     * 获取文件信息
+     * 
+Get file information
+
      * @param request
      * @param response
      * @return
@@ -97,7 +101,7 @@ public class WopiHostContrller {
         FileInfo info = new FileInfo();
 
         try  {
-            // 获取文件名, 防止中文文件名乱码
+            // Get the file name to prevent garbled Chinese file names
             String fileName = URLDecoder.decode(uri.substring(uri.indexOf("wopi/files/") + 11), CHARSET_UTF8);
             if (fileName != null && fileName.length() > 0) {
                 File file = new File(filePath + fileName);
@@ -120,7 +124,8 @@ public class WopiHostContrller {
     }
 
     /**
-     * 获取文件的SHA-256值
+     *
+Get the SHA-256 value of the file
      * @param file
      * @return
      */
@@ -129,12 +134,12 @@ public class WopiHostContrller {
         try (InputStream fis = new FileInputStream(file)) {
             byte[] buffer = new byte[1024];
             int numRead;
-            // 返回实现指定摘要算法的 MessageDigest 对象
+            // Returns a MessageDigest object that implements the specified digest algorithm
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             do {
                 numRead = fis.read(buffer);
                 if (numRead > 0) {
-                    // 更新摘要
+                    // Update summary
                     digest.update(buffer, 0, numRead);
                 }
             } while (numRead != -1);
