@@ -99,7 +99,8 @@ Get file information
     public void getFileInfo(HttpServletRequest request, HttpServletResponse response) {
         String uri = request.getRequestURI();
         FileInfo info = new FileInfo();
-
+        info.setUserCanWrite(false);
+        info.setSupportsUpdate(false);
         try  {
             // Get the file name to prevent garbled Chinese file names
             String fileName = URLDecoder.decode(uri.substring(uri.indexOf("wopi/files/") + 11), CHARSET_UTF8);

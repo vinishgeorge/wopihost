@@ -5,33 +5,37 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 
 /**
- * 文件属性对象
+ * Object attribute
  *
- * 由于wopi的接口不遵守驼峰命名规则，所以需要用@JsonProperty指定别名
+ * 
+Yuwo wopi-style non-compliance with non-compliance naming rules
  * Created by ethendev on 2017/4/15.
  */
 public class FileInfo implements Serializable {
 
     /**
-     * 文件名
+     * Subject name
+
      */
     @JsonProperty("BaseFileName")
     private String baseFileName;
 
     /**
-     * 文件所有者的唯一编号
+     *The only issue of the document owner
      */
     @JsonProperty("OwnerId")
     private String ownerId;
 
     /**
-     * 文件大小，以bytes为单位
+     * 
+The size of the text is small, so bytes
      */
     @JsonProperty("Size")
     private long size;
 
     /**
-     * 文件的256位bit的SHA-2编码散列内容
+     * 
+Contextual 256th bit SHA-2 edited code content
      */
     @JsonProperty("SHA256")
     private String sha256;
